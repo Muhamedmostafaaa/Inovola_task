@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inovola_task/core/utils/theme_manager.dart';
+import 'package:inovola_task/features/details/presentation/screens/details_screen.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -9,10 +12,22 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark),
+          statusBarIconBrightness: Brightness.light),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return
+      ScreenUtilInit(
+        designSize: const Size(1080, 2277),
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home:
+          Directionality(textDirection: TextDirection.rtl,
+              child: const DetailsScreen()),
+          theme: getApplicationTheme(),
+
+        );
+      },
+
     );
   }
 }
